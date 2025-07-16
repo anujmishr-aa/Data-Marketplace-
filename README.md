@@ -1,20 +1,21 @@
-# **What's data.all**
+Features
 
-An open source development framework to help you build a data marketplace on AWS.**data.all** builds a modern data
-workspace that makes collaboration among diverse users (like business, analysts and engineers) easier, increasing
-efficiency and agility in data projects ✨
+-  Central Data Catalog for dataset discovery  
+-  Fine-grained Access Control using AWS IAM & Lake Formation  
+-  S3-backed data lake for storage and management  
+-  Built-in support for data analysis using Athena and Jupyter Notebooks  
+-  Dataset versioning and sharing workflows  
+-  Dashboard integration using QuickSight (optional)
 
-## **Why we built data.all**
 
-Data teams can be diverse: analysts, scientists, engineers, business users. Diverse people, with diverse tools and
-skillsets — diverse "DNAs". All leading to chaos and resulting in titanic efforts spent in Collaboration Overhead.
+Use Cases
 
-Using data.all, any line of business within an organization can create their own isolated data lake, produce, consume
-and share data within and across business units, worldwide. By simplifying data discovery, data access management while
-letting more builders use AWS vast portfolio of data and analytics services, data.all helps more data teams discover
-relevant data and let them use the power of the AWS cloud to create data driven applications faster.
+- Internal data sharing across business units
 
-## **Want to know more?**
+- Self-service analytics for data analysts
 
-Visit our [GitHub pages](https://data-dot-all.github.io/dataall/) to get started and learn more about the architecture
-and the code of **data.all**
+- Centralized governance of data assets
+
+- Enabling secure collaboration with external teams
+
+
