@@ -1,0 +1,124 @@
+from dataall.base.api import gql
+
+from dataall.core.environment.api.input_types import (
+    ModifyEnvironmentInput,
+    NewEnvironmentInput,
+    EnableDataSubscriptionsInput,
+    InviteGroupOnEnvironmentInput,
+    AddConsumptionRoleToEnvironmentInput,
+    UpdateConsumptionRoleInput,
+)
+from dataall.core.environment.api.resolvers import (
+    add_consumption_role,
+    create_environment,
+    delete_environment,
+    disable_subscriptions,
+    enable_subscriptions,
+    invite_group,
+    remove_consumption_role,
+    remove_group,
+    update_consumption_role,
+    update_environment,
+    update_group_permissions,
+)
+
+createEnvironment = gql.MutationField(
+    name='createEnvironment',
+    args=[gql.Argument(name='input', type=gql.NonNullableType(NewEnvironmentInput))],
+    type=gql.Ref('Environment'),
+    resolver=create_environment,
+    test_scope='Environment',
+)
+
+updateEnvironment = gql.MutationField(
+    name='updateEnvironment',
+    args=[
+        gql.Argument(name='environmentUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument(name='input', type=gql.NonNullableType(ModifyEnvironmentInput)),
+    ],
+    type=gql.Ref('Environment'),
+    resolver=update_environment,
+    test_scope='Environment',
+)
+
+inviteGroupOnEnvironment = gql.MutationField(
+    name='inviteGroupOnEnvironment',
+    args=[gql.Argument(name='input', type=gql.NonNullableType(InviteGroupOnEnvironmentInput))],
+    type=gql.Ref('Environment'),
+    resolver=invite_group,
+)
+
+addConsumptionRoleToEnvironment = gql.MutationField(
+    name='addConsumptionRoleToEnvironment',
+    args=[gql.Argument(name='input', type=gql.NonNullableType(AddConsumptionRoleToEnvironmentInput))],
+    type=gql.Ref('ConsumptionRole'),
+    resolver=add_consumption_role,
+)
+
+updateGroupPermission = gql.MutationField(
+    name='updateGroupEnvironmentPermissions',
+    args=[gql.Argument(name='input', type=gql.NonNullableType(InviteGroupOnEnvironmentInput))],
+    type=gql.Ref('Environment'),
+    resolver=update_group_permissions,
+)
+
+removeGroupFromEnvironment = gql.MutationField(
+    name='removeGroupFromEnvironment',
+    args=[
+        gql.Argument('environmentUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument('groupUri', type=gql.NonNullableType(gql.String)),
+    ],
+    type=gql.Ref('Environment'),
+    resolver=remove_group,
+)
+
+removeConsumptionRoleFromEnvironment = gql.MutationField(
+    name='removeConsumptionRoleFromEnvironment',
+    args=[
+        gql.Argument('environmentUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument('consumptionRoleUri', type=gql.NonNullableType(gql.String)),
+    ],
+    type=gql.Boolean,
+    resolver=remove_consumption_role,
+)
+
+deleteEnvironment = gql.MutationField(
+    name='deleteEnvironment',
+    args=[
+        gql.Argument(name='environmentUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument(name='deleteFromAWS', type=gql.Boolean),
+    ],
+    resolver=delete_environment,
+    type=gql.Boolean,
+)
+
+
+EnableDataSubscriptions = gql.MutationField(
+    name='enableDataSubscriptions',
+    args=[
+        gql.Argument(name='environmentUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument(name='input', type=EnableDataSubscriptionsInput),
+    ],
+    resolver=enable_subscriptions,
+    type=gql.Boolean,
+)
+
+DisableDataSubscriptions = gql.MutationField(
+    name='DisableDataSubscriptions',
+    args=[
+        gql.Argument(name='environmentUri', type=gql.NonNullableType(gql.String)),
+    ],
+    resolver=disable_subscriptions,
+    type=gql.Boolean,
+)
+
+updateConsumptionRole = gql.MutationField(
+    name='updateConsumptionRole',
+    args=[
+        gql.Argument('environmentUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument('consumptionRoleUri', type=gql.NonNullableType(gql.String)),
+        gql.Argument('input', type=UpdateConsumptionRoleInput),
+    ],
+    type=gql.Ref('ConsumptionRole'),
+    resolver=update_consumption_role,
+)
