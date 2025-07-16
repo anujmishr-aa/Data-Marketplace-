@@ -5,7 +5,7 @@ Features
 -  S3-backed data lake for storage and management  
 -  Built-in support for data analysis using Athena and Jupyter Notebooks  
 -  Dataset versioning and sharing workflows  
--  Dashboard integration using QuickSight (optional)
+-  Dashboard integration using QuickSight 
 
 
 Use Cases
